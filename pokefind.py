@@ -22,6 +22,8 @@ for each in region_links:
     for each in poke_places_items:
         location_url = 'https://bulbapedia.bulbagarden.net' + each.get('href')
         #TODO add other test pages
+        #test case for pokemon forms
+        #location_url = 'https://bulbapedia.bulbagarden.net/wiki/Striaton_City'
         #test case for allies column:
         #location_url = 'https://bulbapedia.bulbagarden.net/wiki/Poni_Meadow'
         print ("   ",each.get('href')[6:])
