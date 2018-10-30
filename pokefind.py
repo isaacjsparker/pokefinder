@@ -5,8 +5,8 @@ from bs4 import BeautifulSoup
 #get regional locations
 page = requests.get('https://bulbapedia.bulbagarden.net/wiki/Region')
 soup = BeautifulSoup(page.text, 'html.parser')
-regions = soup.findAll("table")
-region_links = regions[3].tr.td.nextSibling.nextSibling.findAll('a')
+regions = soup.find_all("table")
+region_links = regions[3].tr.td.nextSibling.nextSibling.find_all('a')
 
 for each in region_links:
     #get locations
@@ -14,9 +14,9 @@ for each in region_links:
     print (each.get('href')[6:])
     page = requests.get(region_url)
     soup = BeautifulSoup(page.text, 'html.parser')
-    poke_place_list_list = soup.findAll("table")
-    poke_places = poke_place_list_list[len(poke_place_list_list)-2]
-    poke_places_items = poke_places.findAll('a')
+    poke_place_list_list = soup.find_all("table")
+    poke_places = poke_place_list_list[-2]
+    poke_places_items = poke_places.find_all('a')
 
     #get pokemon at each location
     for each in poke_places_items:
@@ -71,6 +71,7 @@ for each in region_links:
                                                 #TODO throw uncaught "S" region error
                                                 print ("          S")
                                         elif(each.a.string == "R"):
+                                            pass
                                         else:
                                             print ("         ",each.a.string)
                                     poke_counter += 1                               
